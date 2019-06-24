@@ -19,8 +19,8 @@ public class UsuarioDatabase {
 	/*
 	 * Método usado para logar o usuário com sua senha e email
 	*/	
-	public boolean logarUsuario(String email, String senha) {
-		boolean logado = false;
+	public Usuario logarUsuario(String email, String senha) {
+		Usuario usuario = null;
 		
 		String sql = "SELECT * FROM tbl_pessoa WHERE email = ? AND senha = ?;";
 		
@@ -32,19 +32,10 @@ public class UsuarioDatabase {
 			stmt = this.biblio.getStatement();
 			
 			result = stmt.executeQuery(sql);
-			int contador = 0;
 			
 			while(result.next()) {
-				contador++;
-			}
-			
-			if (contador == 1) {
-				System.out.println("Usuário logado");
-				logado = true;
-			} else if (contador == 0) {
-				System.out.println("Nenhum usuário encontrado");
-			} else {
-				System.out.println("Mais de um usuário com o mesmo email e senha");
+				usuario = new Usuario(result.getString("nome"), result.getString("email"), result.getString("senha"));
+				usuario.setId(result.getInt("id"));
 			}
 			
 		} catch (SQLException e) {
@@ -71,7 +62,7 @@ public class UsuarioDatabase {
 			}
 		}
 		
-		return logado;
+		return usuario;
 	}
 	
 	/*
