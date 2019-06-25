@@ -24,14 +24,16 @@ public class UsuarioDatabase {
 		
 		String sql = "SELECT * FROM tbl_pessoa WHERE email = ? AND senha = ?;";
 		
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet result = null;
 		
 		try {
 			this.biblio.conectar();
-			stmt = this.biblio.getStatement();
+			pstmt = this.biblio.getPreparedStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, senha);
 			
-			result = stmt.executeQuery(sql);
+			result = pstmt.executeQuery(sql);
 			
 			while(result.next()) {
 				usuario = new Usuario(result.getString("nome"), result.getString("email"), result.getString("senha"));
@@ -43,9 +45,9 @@ public class UsuarioDatabase {
 			e.fillInStackTrace();
 			System.out.println("Erro ao logar usuário");
 		} finally {			
-			if (stmt != null) {
+			if (pstmt != null) {
 				try {
-					stmt.close();
+					pstmt.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

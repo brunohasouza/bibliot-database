@@ -17,7 +17,7 @@ public class LivroDatabase {
 	}
 	
 	/*
-	 * Filtrar livro por título
+	 * Filtrar livro por título passando uma String como parâmetro
 	*/	
 	public ArrayList<Livro> buscarLivro(String palavra) {
 		String sql = "SELECT * FROM tbl_livro WHERE titulo LIKE '%" + palavra + "%';";		
