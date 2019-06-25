@@ -22,18 +22,18 @@ public class UsuarioDatabase {
 	public Usuario logarUsuario(String email, String senha) {
 		Usuario usuario = null;
 		
-		String sql = "SELECT * FROM tbl_pessoa WHERE email = ? AND senha = ?;";
+		String sql = "SELECT * FROM tbl_usuario WHERE email = ? AND senha = ?;";
 		
 		PreparedStatement pstmt = null;
 		ResultSet result = null;
 		
 		try {
-			this.biblio.conectar();
+			boolean conectou = this.biblio.conectar();
 			pstmt = this.biblio.getPreparedStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setString(2, senha);
 			
-			result = pstmt.executeQuery(sql);
+			result = pstmt.executeQuery();
 			
 			while(result.next()) {
 				usuario = new Usuario(result.getString("nome"), result.getString("email"), result.getString("senha"));
@@ -52,16 +52,18 @@ public class UsuarioDatabase {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+			}
+			
+			if (result != null) {				
 				try {
 					result.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				this.biblio.desconectar();
 			}
+			
+			this.biblio.desconectar();
 		}
 		
 		return usuario;

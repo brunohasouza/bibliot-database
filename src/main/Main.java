@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import models.Aluguel;
 import models.Livro;
+import models.Usuario;
 import repository.AluguelDatabase;
 import repository.LivroDatabase;
 import repository.UsuarioDatabase;
@@ -46,7 +47,7 @@ public class Main {
 //		}
 //		
 //		
-		LivroDatabase livroDb = new LivroDatabase();
+//		LivroDatabase livroDb = new LivroDatabase();
 //		
 //		boolean criou = livroDb.criarTabela();
 		
@@ -54,16 +55,16 @@ public class Main {
 //			livroDb.adicionarLivros(livros);			
 //		}
 		
-		ArrayList<Livro> listaLivros = livroDb.buscarLivro("DO PARTIDO");
+//		ArrayList<Livro> listaLivros = livroDb.buscarLivro("DO PARTIDO");
 //		
-		for(Livro livro : listaLivros) {
-			System.out.println("Titulo: " + livro.getTitulo());
-			System.out.println("Autor: " + livro.getAutor());
-			System.out.println("Editora: " + livro.getEditora());
-			System.out.println("Ano: " + livro.getAno());
-			System.out.println("Id: " + livro.getId());
-			System.out.println("-----------------------------");
-		}
+//		for(Livro livro : listaLivros) {
+//			System.out.println("Titulo: " + livro.getTitulo());
+//			System.out.println("Autor: " + livro.getAutor());
+//			System.out.println("Editora: " + livro.getEditora());
+//			System.out.println("Ano: " + livro.getAno());
+//			System.out.println("Id: " + livro.getId());
+//			System.out.println("-----------------------------");
+//		}
 //		
 //		UsuarioDatabase usuarioDb = new UsuarioDatabase();
 //		usuarioDb.criarTabela();
@@ -84,6 +85,14 @@ public class Main {
 		
 //		aluguelDb.criarTabela();
 		
+		UsuarioDatabase usuadioDB = new UsuarioDatabase();
+		Usuario usuario = usuadioDB.logarUsuario("bruno@email.com", "123123");
+		
+		if (usuario != null) {
+			System.out.println("[Logado] Nome: " + usuario.getNome());
+		} else {
+			System.out.println("Nenhum usuário encontrado");
+		}
 	}
 
 }
