@@ -17,6 +17,14 @@ public class LivroDatabase {
 	}
 	
 	/*
+	 * Filtrar livro por título
+	*/	
+	public ArrayList<Livro> buscarLivro(String palavra) {
+		String sql = "SELECT * FROM tbl_livro WHERE titulo LIKE '%" + palavra + "%';";		
+		return this.listarLivros(sql);
+	}
+	
+	/*
 	 * Criação da tabela tbl_livro
 	*/
 	public boolean criarTabela() {

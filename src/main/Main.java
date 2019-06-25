@@ -46,7 +46,7 @@ public class Main {
 //		}
 //		
 //		
-//		LivroDatabase livroDb = new LivroDatabase();
+		LivroDatabase livroDb = new LivroDatabase();
 //		
 //		boolean criou = livroDb.criarTabela();
 		
@@ -54,32 +54,32 @@ public class Main {
 //			livroDb.adicionarLivros(livros);			
 //		}
 		
-//		ArrayList<Livro> listaLivros = livroDb.listarLivrosDisponiveis();
+		ArrayList<Livro> listaLivros = livroDb.buscarLivro("DO PARTIDO");
 //		
-//		for(Livro livro : listaLivros) {
-//			System.out.println("Titulo: " + livro.getTitulo());
-//			System.out.println("Autor: " + livro.getAutor());
-//			System.out.println("Editora: " + livro.getEditora());
-//			System.out.println("Ano: " + livro.getAno());
-//			System.out.println("Id: " + livro.getId());
-//			System.out.println("-----------------------------");
-//		}
+		for(Livro livro : listaLivros) {
+			System.out.println("Titulo: " + livro.getTitulo());
+			System.out.println("Autor: " + livro.getAutor());
+			System.out.println("Editora: " + livro.getEditora());
+			System.out.println("Ano: " + livro.getAno());
+			System.out.println("Id: " + livro.getId());
+			System.out.println("-----------------------------");
+		}
 //		
 //		UsuarioDatabase usuarioDb = new UsuarioDatabase();
 //		usuarioDb.criarTabela();
 		
-		AluguelDatabase aluguelDb = new AluguelDatabase();
-		Aluguel aluguel = aluguelDb.obterAluguelPorUsuarioELivro(3, 20);
+//		AluguelDatabase aluguelDb = new AluguelDatabase();
+//		Aluguel aluguel = aluguelDb.obterAluguelPorUsuarioELivro(3, 20);
 		
 //		for (Aluguel aluguel : alugueis) {	
-		if (aluguel != null) {
-			System.out.println("Titulo: " + aluguel.getLivro().getTitulo());
-			System.out.println("Autor: " + aluguel.getLivro().getAutor());
-			System.out.println("Usuario: " + aluguel.getUsuario().getNome());
-			System.out.println("Email: " + aluguel.getUsuario().getEmail());
-			System.out.println("Coleta: " + aluguel.getDataColeta());
-			System.out.println("-----------------------------");
-		}
+//		if (aluguel != null) {
+//			System.out.println("Titulo: " + aluguel.getLivro().getTitulo());
+//			System.out.println("Autor: " + aluguel.getLivro().getAutor());
+//			System.out.println("Usuario: " + aluguel.getUsuario().getNome());
+//			System.out.println("Email: " + aluguel.getUsuario().getEmail());
+//			System.out.println("Coleta: " + aluguel.getDataColeta());
+//			System.out.println("-----------------------------");
+//		}
 		
 		
 //		aluguelDb.criarTabela();
