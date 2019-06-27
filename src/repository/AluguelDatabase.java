@@ -19,6 +19,63 @@ public class AluguelDatabase {
 	}
 	
 	/*
+	 * Método usado para listar os livros alugados passando o id do usuário
+	*/
+	public ArrayList<Aluguel> listarAlugadosDeUsuario(int idUsuario) {
+		String sql = "SELECT "
+				+ "u.id AS idUsuario, "
+				+ "u.nome AS nomeUsuario, "
+				+ "u.email AS emailUsuario, "
+				+ "u.senha AS senhaUsuario, "
+				+ "l.titulo AS tituloLivro, "
+				+ "l.autor AS autorLivro, "
+				+ "l.capa AS capaLivro, "
+				+ "l.editora AS editoraLivro, "
+				+ "l.ano AS anoLivro, "
+				+ "l.id AS idLivro, "
+				+ "a.dataColeta AS dataColeta, "
+				+ "a.dataDevolucao AS dataDevolucao, "
+				+ "a.devolvido AS devolvido "
+				+ "FROM tbl_aluguel a "
+				+ "JOIN tbl_livro AS l ON a.idLivro = l.id "
+				+ "JOIN tbl_usuario AS u ON a.idUsuario = u.id "
+				+ "WHERE a.idUsuario = "
+				+ idUsuario + " "
+				+ "AND a.devolvido = 0";
+		
+		return this.listarAlugueis(sql);
+	}
+	
+	/*
+	 * Método usado para listar os livros devolvidos passando o id do usuário
+	*/
+	public ArrayList<Aluguel> listarDevolvidosDeUsuario(int idUsuario) {
+		String sql = "SELECT "
+				+ "u.id AS idUsuario, "
+				+ "u.nome AS nomeUsuario, "
+				+ "u.email AS emailUsuario, "
+				+ "u.senha AS senhaUsuario, "
+				+ "l.titulo AS tituloLivro, "
+				+ "l.autor AS autorLivro, "
+				+ "l.capa AS capaLivro, "
+				+ "l.editora AS editoraLivro, "
+				+ "l.ano AS anoLivro, "
+				+ "l.id AS idLivro, "
+				+ "a.dataColeta AS dataColeta, "
+				+ "a.dataDevolucao AS dataDevolucao, "
+				+ "a.devolvido AS devolvido "
+				+ "FROM tbl_aluguel a "
+				+ "JOIN tbl_livro AS l ON a.idLivro = l.id "
+				+ "JOIN tbl_usuario AS u ON a.idUsuario = u.id "
+				+ "WHERE a.idUsuario = "
+				+ idUsuario + " "
+				+ "AND a.devolvido = 1";
+		
+		return this.listarAlugueis(sql);
+	}
+	
+	
+	/*
 	 * Este método é privado e serve para contar linhas da tabela tbl_aluguel
 	*/
 	private int contarAluguel(String sql, int id, String sucessoMsg, String erroMsg) {
