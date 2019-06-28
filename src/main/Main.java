@@ -69,30 +69,30 @@ public class Main {
 //		UsuarioDatabase usuarioDb = new UsuarioDatabase();
 //		usuarioDb.criarTabela();
 		
-//		AluguelDatabase aluguelDb = new AluguelDatabase();
-//		Aluguel aluguel = aluguelDb.obterAluguelPorUsuarioELivro(3, 20);
+		AluguelDatabase aluguelDb = new AluguelDatabase();
+		ArrayList<Aluguel> alugueis = aluguelDb.listarDevolvidosDeUsuario(3);
 		
-//		for (Aluguel aluguel : alugueis) {	
+		for (Aluguel aluguel : alugueis) {	
 //		if (aluguel != null) {
-//			System.out.println("Titulo: " + aluguel.getLivro().getTitulo());
-//			System.out.println("Autor: " + aluguel.getLivro().getAutor());
-//			System.out.println("Usuario: " + aluguel.getUsuario().getNome());
-//			System.out.println("Email: " + aluguel.getUsuario().getEmail());
-//			System.out.println("Coleta: " + aluguel.getDataColeta());
-//			System.out.println("-----------------------------");
-//		}
+			System.out.println("Titulo: " + aluguel.getLivro().getTitulo());
+			System.out.println("Autor: " + aluguel.getLivro().getAutor());
+			System.out.println("Usuario: " + aluguel.getUsuario().getNome());
+			System.out.println("Email: " + aluguel.getUsuario().getEmail());
+			System.out.println("Coleta: " + aluguel.getDataColeta());
+			System.out.println("-----------------------------");
+		}
 		
 		
 //		aluguelDb.criarTabela();
 		
-		UsuarioDatabase usuadioDB = new UsuarioDatabase();
-		Usuario usuario = usuadioDB.logarUsuario("bruno@email.com", "123123");
-		
-		if (usuario != null) {
-			System.out.println("[Logado] Nome: " + usuario.getNome());
-		} else {
-			System.out.println("Nenhum usuário encontrado");
-		}
+//		UsuarioDatabase usuadioDB = new UsuarioDatabase();
+//		Usuario usuario = usuadioDB.logarUsuario("bruno@email.com", "123123");
+//		
+//		if (usuario != null) {
+//			System.out.println("[Logado] Nome: " + usuario.getNome());
+//		} else {
+//			System.out.println("Nenhum usuário encontrado");
+//		}
 	}
 
 }

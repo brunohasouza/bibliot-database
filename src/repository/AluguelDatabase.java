@@ -19,6 +19,25 @@ public class AluguelDatabase {
 	}
 	
 	/*
+	 * Método para validar se o livro está alugado pelo usuário, passando o id de ambos.
+	*/
+	public boolean verificarLivroAlugadoPeloUsuario(int idUsuario, int idLivro) {
+		String sql = "SELECT "
+				+ "count(*) "
+				+ "FROM tbl_aluguel a "
+				+ "JOIN tbl_livro AS l ON a.idLivro = l.id "
+				+ "JOIN tbl_usuario AS u ON a.idUsuario = u.id "
+				+ "WHERE a.idUsuario = ? "
+				+ "AND a.idLivros = "
+				+ idLivro + " "
+				+ "AND a.devolvido = 0";
+		
+		int contador = this.contarAluguel(sql, idUsuario, "Aluguel encontrado", "Erro ao contar livro alugado pelo usuário");
+		
+		return contador > 0;
+	}
+	
+	/*
 	 * Método usado para listar os livros alugados passando o id do usuário
 	*/
 	public ArrayList<Aluguel> listarAlugadosDeUsuario(int idUsuario) {
@@ -134,7 +153,7 @@ public class AluguelDatabase {
 		String sql = "SELECT count(*) FROM tbl_aluguel WHERE idUsuario = ? AND devolvido = 0;";
 		int contador = this.contarAluguel(sql, idUsuario, "Livros alugados contados com sucesso", "Não foi possível contar os livros deste usuário");
 		
-		return contador <= 3;
+		return contador < 3;
 	}
 	
 	/*
